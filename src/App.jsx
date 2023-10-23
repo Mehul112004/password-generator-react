@@ -42,12 +42,12 @@ function App() {
     <>
       <div
         className="
-       shadow-md mx-auto my-8 px-4 rounded-lg text-orange-500 bg-gray-600 text-center md:flex-col"
+       w-full max-w-lg shadow-md mx-auto my-8 px-4 rounded-lg text-orange-500 bg-gray-600 text-center md:flex-col p-4"
       >
         <h1 className="text-white text-center mb-2 text-3xl">
           Password Generator
         </h1>
-        <div className=" w-60 flex shadow rounded-lg overflow-hidden mb-4 py-4 md:w-full mx-auto">
+        <div className="max-w-lg flex shadow rounded-lg overflow-hidden mb-4 py-4  mx-auto">
           <input
             type="text"
             value={password}

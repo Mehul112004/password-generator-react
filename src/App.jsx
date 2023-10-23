@@ -42,12 +42,12 @@ function App() {
     <>
       <div
         className="
-      w-full max-w-lg shadow-md mx-auto my-8 px-4 rounded-lg text-orange-500  bg-gray-600 text-center"
+       shadow-md mx-auto my-8 px-4 rounded-lg text-orange-500 bg-gray-600 text-center md:flex-col"
       >
         <h1 className="text-white text-center mb-2 text-3xl">
           Password Generator
         </h1>
-        <div className="flex shadow rounded-lg overflow-hidden mb-4 py-4">
+        <div className=" w-60 flex shadow rounded-lg overflow-hidden mb-4 py-4 md:w-full mx-auto">
           <input
             type="text"
             value={password}
@@ -63,7 +63,7 @@ function App() {
             Copy
           </button>
         </div>
-        <div className="flex gap-4 text-white">
+        <div className="flex gap-4 text-white w-full flex-col md:flex-row">
           <div className="flex items-center gap-x-1">
             <input
               type="range"

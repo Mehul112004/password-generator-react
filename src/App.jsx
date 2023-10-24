@@ -8,13 +8,16 @@ function App() {
   const [numbers, setNumbers] = useState(false);
   const [char, setChar] = useState(false);
   const [password, setPassword] = useState("");
+  const [copy,setCopy]=useState("Copy")
 
   const passwordRef = useRef(null);
+  const copyRef=useRef(null)
 
   const copyPassword = useCallback(() => {
-    passwordRef.current?.select()
     window.navigator.clipboard.writeText(password)
+    setCopy("Copied ✅")
   }, [password]);
+  
 
   const passwordGenerator = useCallback(() => {
     let pass = "";
@@ -31,8 +34,8 @@ function App() {
       let char = Math.floor(Math.random() * str.length) + 1;
       pass += str.charAt(char);
     }
-    // console.log(pass);
     setPassword(pass);
+    setCopy("Copy")
   }, [length, numbers, char, setPassword]);
 
   useEffect(() => {
@@ -47,7 +50,7 @@ function App() {
         <h1 className="text-white text-center mb-2 text-3xl">
           Password Generator
         </h1>
-        <div className="max-w-lg flex shadow rounded-lg overflow-hidden mb-4 py-4  mx-auto">
+        <div className="max-w-lg flex shadow rounded-lg mb-4 py-4  mx-auto relative">
           <input
             type="text"
             value={password}
@@ -57,10 +60,11 @@ function App() {
             ref={passwordRef}
           />
           <button
-            className="text-blue-400 rounded-l-none h-full"
+            className="text-blue-400 rounded-l-none h-full min-w-fit"
             onClick={copyPassword}
+            ref={copyRef}
           >
-            Copy
+            {copy}
           </button>
         </div>
         <div className="flex gap-4 text-white w-full flex-col md:flex-row">
@@ -84,7 +88,7 @@ function App() {
               id="numberChecked"
               defaultChecked={numbers}
               onChange={() => {
-                setNumbers((prev) => !prev);
+                setNumbers((prevAllowed) => !prevAllowed);
               }}
             />
             <label htmlFor="numberChecked">Numbers</label>
@@ -95,7 +99,7 @@ function App() {
               id="charactersChecked"
               defaultChecked={char}
               onChange={() => {
-                setChar((prev) => !prev);
+                setChar((prevAllowed) => !prevAllowed);
               }}
             />
             <label htmlFor="charactersChecked">Characters</label>
